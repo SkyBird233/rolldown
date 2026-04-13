@@ -1,0 +1,17 @@
+name: Test Release Build
+
+on:
+  push:
+    branches:
+      - feat/loongarch-test
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        default: 'noop'
+
+jobs:
+  test:
+    uses: ./.github/workflows/reusable-release-build.yml
+    with:
+      version: ${{ inputs.version || 'noop' }}
